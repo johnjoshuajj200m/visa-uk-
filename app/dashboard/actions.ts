@@ -17,7 +17,7 @@ export async function createUKStudentVisa() {
     }
 
     try {
-        const profile = await createVisaProfile(user.id, 'UK_STUDENT')
+        const profile = await createVisaProfile(supabase, user.id, 'UK_STUDENT')
 
         // Revalidate the dashboard to show the new profile
         revalidatePath('/dashboard')

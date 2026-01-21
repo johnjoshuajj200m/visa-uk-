@@ -69,11 +69,10 @@ export async function getVisaProfile(profileId: string): Promise<VisaProfile | n
  * Create a new visa profile for the current user
  */
 export async function createVisaProfile(
+    supabase: Awaited<ReturnType<typeof createClient>>,
     userId: string,
     visaType: string
 ): Promise<VisaProfile> {
-    const supabase = await createClient()
-
     const { data, error } = await supabase
         .from('visa_profiles')
         .insert({
