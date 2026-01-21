@@ -31,7 +31,7 @@ export default function DocumentReviewComponent({
             // Page will revalidate and show updated review
             window.location.reload()
         } else {
-            setError(result.error)
+            setError(result.error || 'Check failed')
         }
     }
 
@@ -56,8 +56,8 @@ export default function DocumentReviewComponent({
                         onClick={handleReview}
                         disabled={reviewing}
                         className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${reviewing
-                                ? 'bg-zinc-200 dark:bg-zinc-700 text-zinc-500 dark:text-zinc-400 cursor-not-allowed'
-                                : 'bg-purple-600 text-white hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600'
+                            ? 'bg-zinc-200 dark:bg-zinc-700 text-zinc-500 dark:text-zinc-400 cursor-not-allowed'
+                            : 'bg-purple-600 text-white hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-600'
                             }`}
                     >
                         {reviewing ? '🔍 Reviewing...' : '🔍 AI Review Document'}

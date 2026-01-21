@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { getVisaProfiles } from '@/lib/database/visa-profiles'
+import { getVisaProfiles, type VisaProfile } from '@/lib/database/visa-profiles'
 import { getUserSubscription } from '@/lib/database/subscriptions'
 import LogoutButton from './logout-button'
 import CreateVisaButton from './create-visa-button'
@@ -18,7 +18,7 @@ export default async function DashboardPage() {
     }
 
     // Fetch user's visa profiles
-    let visaProfiles = []
+    let visaProfiles: VisaProfile[] = []
     try {
         visaProfiles = await getVisaProfiles()
     } catch (error) {

@@ -19,7 +19,7 @@ export async function extractTextFromPDF(buffer: Buffer): Promise<string> {
  * - Normalize line breaks
  * - Trim
  */
-export function normalizeText(text: string): Promise<string> {
+export async function normalizeText(text: string): Promise<string> {
     return text
         .replace(/\s+/g, ' ') // Replace multiple spaces with single space
         .replace(/\n\s*\n/g, '\n\n') // Normalize double line breaks
