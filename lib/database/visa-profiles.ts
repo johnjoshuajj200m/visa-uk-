@@ -73,6 +73,13 @@ export async function createVisaProfile(
     userId: string,
     visaType: string
 ): Promise<VisaProfile> {
+    // TEMPORARY: Log insert parameters
+    console.log('[DB] createVisaProfile called with:', {
+        userId,
+        visaType,
+        hasSupabaseClient: !!supabase,
+    })
+
     const { data, error } = await supabase
         .from('visa_profiles')
         .insert({
@@ -84,12 +91,21 @@ export async function createVisaProfile(
         .single()
 
     if (error) {
-        console.error('Error creating visa profile:', error)
-        throw new Error('Failed to create visa profile')
+        // TEMPORARY: Log full error details
+        console.error('[DB] Insert failed:', {
+            code: error.code,
+            message: error.message,
+            details: error.details,
+            hint: error.hint,
+            userId,
+        })
+        throw new Error(`Supabase error: ${error.message} (code: ${error.code})`)
     }
 
+    console.log('[DB] Insert succeeded, profile ID:', data.id)
     return data as VisaProfile
 }
+
 
 /**
  * Update a visa profile
