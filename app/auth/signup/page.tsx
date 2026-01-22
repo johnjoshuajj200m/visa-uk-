@@ -1,10 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-
-console.log("[SIGNUP PAGE LOADED]");
 
 export default function SignupPage() {
     const [email, setEmail] = useState('')
@@ -13,6 +11,10 @@ export default function SignupPage() {
     const [loading, setLoading] = useState(false)
     const router = useRouter()
     const supabase = createClient()
+
+    useEffect(() => {
+        console.log("[SIGNUP PAGE LOADED]")
+    }, [])
 
     const handleSignup = async (e: React.FormEvent) => {
         e.preventDefault()
