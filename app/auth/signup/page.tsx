@@ -1,3 +1,5 @@
+export const runtime = 'nodejs'
+
 'use client'
 
 console.log("[SIGNUP PAGE LOADED]");
