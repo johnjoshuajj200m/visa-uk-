@@ -1,17 +1,18 @@
 import { createBrowserClient } from '@supabase/ssr'
 
 export function createClient() {
-    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
-        throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL')
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+    if (!url) {
+        throw new Error('NEXT_PUBLIC_SUPABASE_URL is not defined')
     }
-    if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-        throw new Error('Missing NEXT_PUBLIC_SUPABASE_ANON_KEY')
+    if (!key) {
+        throw new Error('NEXT_PUBLIC_SUPABASE_ANON_KEY is not defined')
     }
 
-    console.log('[SUPABASE CLIENT] URL:', process.env.NEXT_PUBLIC_SUPABASE_URL)
+    // Log at runtime so we can verify correct URL in browser console
+    console.log('[SUPABASE CLIENT RUNTIME]', url)
 
-    return createBrowserClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-    )
+    return createBrowserClient(url, key)
 }
