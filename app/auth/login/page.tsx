@@ -1,5 +1,3 @@
-export const runtime = 'nodejs'
-
 'use client'
 
 import { useState, Suspense } from 'react'

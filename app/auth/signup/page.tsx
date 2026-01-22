@@ -1,12 +1,10 @@
-export const runtime = 'nodejs'
-
 'use client'
-
-console.log("[SIGNUP PAGE LOADED]");
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+
+console.log("[SIGNUP PAGE LOADED]");
 
 export default function SignupPage() {
     const [email, setEmail] = useState('')
