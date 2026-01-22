@@ -33,14 +33,21 @@ export default function SignupPage() {
             if (signUpError) {
                 console.error('[SIGNUP ERROR]', signUpError)
                 setError(signUpError.message)
+                setLoading(false)
+                return
+            }
+
+            if (data.user) {
+                console.log('[SIGNUP SUCCESS]', data.user.id)
+                // Redirect directly to dashboard
+                router.push('/dashboard')
             } else {
-                console.log('[SIGNUP SUCCESS]', data)
-                router.push('/auth/login?message=Check your email to confirm your account')
+                setError('Signup succeeded but no user data returned')
+                setLoading(false)
             }
         } catch (err) {
             console.error('[SIGNUP EXCEPTION]', err)
             setError(err instanceof Error ? err.message : 'An unexpected error occurred')
-        } finally {
             setLoading(false)
         }
     }
